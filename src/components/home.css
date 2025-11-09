@@ -1,0 +1,371 @@
+/* ------------------- */
+/* CSS VARIABLES (Theme) */
+/* ------------------- */
+
+/* 1. This is the default LIGHT theme */
+[data-theme='light'] {
+  --primary-color: #005A9C;
+  --secondary-color: #F39C12;
+  --dark-color: #333333;      /* Dark text */
+  --light-color: #FFFFFF;     /* White background */
+  --grey-bg: #F8F9FA;       /* Light grey background */
+  --border-color: #EAEAEA;
+  --text-light: #777777;     /* Variable for lighter text */
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. This is the new DARK theme */
+[data-theme='dark'] {
+  --primary-color: #007BFF; /* Brighter blue for dark mode */
+  --secondary-color: #F39C12;
+  --dark-color: #F0F0F0;       /* Light text */
+  --light-color: #1A1A1A;     /* Dark background */
+  --grey-bg: #2C2C2C;       /* Lighter dark background */
+  --border-color: #444444;
+  --text-light: #AAAAAA;     /* Variable for lighter text */
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 3. Add transitions for a smooth change */
+body, .navbar, .property-card, .search-bar, .theme-toggle, .btn, .search-bar input, .search-bar select {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+
+/* ------------------- */
+/* GLOBAL STYLES       */
+/* ------------------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+}
+
+section {
+  padding: 60px 20px;
+}
+
+/* ------------------- */
+/* BUTTONS             */
+/* ------------------- */
+/* Reusable button styles */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  /* transition is now global */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+.btn-primary:hover {
+  background-color: #e08e0b;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+.btn-secondary:hover {
+  background-color: #004a80;
+}
+
+.btn-light {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+}
+.btn-light:hover {
+  background-color: var(--grey-bg);
+}
+
+
+/* ------------------- */
+/* HERO SECTION        */
+/* ------------------- */
+.hero-section {
+  position: relative;
+height: 90vh; /* Changed from 60vh to 90vh to make it taller */
+  min-height: 600px; /* You might also want to increase this minimum height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--light-color); /* This white text is good for the overlay */
+  
+  /* --- THIS LINE WAS REMOVED --- */
+  /* background-image: url(...); */
+  
+  background-size: cover;
+  background-position: center;
+}
+
+/* The overlay adds contrast so the white text is readable */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Changed opacity from 0.5 to 0.2 (lighter) */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  /* FIX: Added this line.
+    Your original 'color: var(--light-color)' on .hero-section
+    would make this text dark in dark-mode (since --light-color
+    becomes your dark background color). This forces it to be
+    white, as it's on a dark image overlay.
+  */
+  color: #FFFFFF; 
+}
+
+.hero-content p {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  color: #FFFFFF; 
+}
+
+/* --- ADDED STYLES FOR HEADLINE --- */
+.hero-content .highlight-blue {
+  /* This targets the <span> for "Your Dream Home" */
+  color: var(--primary-color); /* Uses your theme's blue */
+}
+
+.hero-content .text-mumbai {
+  /* This targets the <span> for "MUMBAI" */
+  display: inline-block; /* Helps with layout */
+  font-size: 4.5rem;   /* Larger font size */
+  margin-top: 10px;    /* Adds space above it */
+  /* It will inherit the white color from the h1 */
+}
+/* --- END OF ADDED STYLES --- */
+
+
+/* ------------------- */
+/* SEARCH BAR          */
+/* ------------------- */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap; /* Allows it to stack on small screens */
+  gap: 10px;
+  background: var(--light-color);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.search-bar input,
+.search-bar select {
+  flex: 1; /* Makes them share space */
+  min-width: 150px; /* Prevents them from getting too small */
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  /* --- ADDED FOR THEME --- */
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+/* For placeholder text in dark mode */
+.search-bar input::placeholder {
+  color: var(--text-light);
+  opacity: 1; /* Firefox needs this */
+}
+
+.search-bar input {
+  flex-grow: 2; /* Make the text input the largest */
+}
+
+.search-bar .btn-primary {
+  flex-basis: 120px; /* Give the button a consistent base size */
+  justify-content: center;
+}
+
+/* ------------------- */
+/* FEATURED LISTINGS   */
+/* ------------------- */
+.featured-listings {
+  background-color: var(--grey-bg);
+}
+
+/* This is the magic for a responsive grid */
+.listing-grid {
+  display: grid;
+  /* Creates columns that are at least 320px wide, but will grow to fill space */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.property-card {
+  background: var(--light-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden; /* Keeps the image corners rounded */
+  /* transition is now global */
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.property-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* Ensures the image covers the space without distortion */
+  display: block;
+}
+
+.card-content {
+  padding: 25px;
+}
+
+.card-content .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.card-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: var(--dark-color); /* Ensure this uses the variable */
+}
+
+.card-content .address {
+  color: var(--text-light); /* <-- FIXED */
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: var(--text-light); /* <-- FIXED */
+}
+
+.features span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ------------------- */
+/* VALUE PROPOSITION   */
+/* ------------------- */
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Allows stacking on mobile */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto 0;
+}
+
+.step {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  text-align: center;
+  padding: 20px;
+}
+
+.step span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: var(--light-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.step h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--dark-color); /* Ensure this uses the variable */
+}
+
+/* ------------------- */
+/* CTA BANNER          */
+/* ------------------- */
+.cta-banner {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  text-align: center;
+}
+
+.cta-banner h2 {
+  color: var(--light-color); /* This text should stay light */
+}
+
+.cta-banner p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* ------------------- */
+/* RESPONSIVENESS      */
+/* ------------------- */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  /* --- ADDED RESPONSIVENESS FOR HEADLINE --- */
+  .hero-content .text-mumbai {
+    font-size: 3.5rem; /* Scale down MUMBAI on mobile */
+  }
+  /* --- END OF ADDED STYLES --- */
+
+  .search-bar {
+    flex-direction: column; /* Stack search inputs vertically */
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,193 @@
+/* ------------------- */
+/* NAVBAR STYLES       */
+/* ------------------- */
+.navbar {
+  /* Use CSS variables defined in your main Home.css */
+  background: var(--light-color);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  position: sticky; /* Makes it stick to the top */
+  top: 0;
+  z-index: 999;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease-in-out;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 20px;
+}
+
+.navbar-actions {
+    text-decoration: none;
+}
+
+.navbar-logo {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  gap: 30px;
+}
+
+.nav-item {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--dark-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* Underline effect on hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ------------------- */
+/* ACTIONS & TOGGLE    */
+/* ------------------- */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.theme-toggle {
+  background: var(--grey-bg);
+  border: 1px solid var(--border-color);
+  color: var(--dark-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--border-color);
+}
+
+.menu-icon {
+  display: none; /* Hidden on desktop */
+  font-size: 1.8rem;
+  color: var(--dark-color);
+  cursor: pointer;
+}
+
+.nav-item-mobile {
+  display: none; /* Hidden on desktop */
+}
+
+/* ------------------- */
+/* MOBILE RESPONSIVE   */
+/* ------------------- */
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 80px); /* Full height minus navbar */
+    position: absolute;
+    top: 80px;
+    left: -100%; /* Slides in from the left */
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: var(--light-color);
+    padding: 40px 0;
+    gap: 20px;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+  }
+
+  .nav-item {
+    height: auto;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+  }
+  
+  .nav-link:hover::after {
+    width: 0; /* Disable underline on mobile */
+  }
+
+  .menu-icon {
+    display: block; /* Show hamburger icon */
+  }
+
+  .btn-desktop {
+    display: none; /* Hide desktop buttons */
+  }
+  
+  .nav-item-mobile {
+    display: block; /* Show mobile buttons */
+    padding: 10px;
+  }
+  
+  .nav-item-mobile .btn {
+    width: 200px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ------------------- */
+/* BUTTONS             */
+/* ------------------- */
+/* Reusable button styles */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none; /* <-- ADD THIS LINE */
+}
